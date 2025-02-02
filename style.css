@@ -1,0 +1,122 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#car {
+    position: absolute;
+    top: 100px;
+    left: calc(10% - 50px);
+}
+
+#background {
+    width: 100%;
+    background-color: lightblue;
+    height: 160px;
+    border-bottom: solid 10px aqua;
+}
+
+#ruler {
+    position: relative;
+    width: 80%;
+    margin: 20px 10%;
+    height: 14px;
+}
+
+#ruler .m,
+#ruler .dm {
+    position: absolute;
+    border-left: 1px solid #555;
+    height: 14px;
+    width: 10%;
+}
+
+#ruler .m:after {
+    position: absolute;
+    bottom: 15px;
+    font: 11px sans-serif;
+}
+
+#ruler .dm {height: 5px;}
+
+#ruler .m:nth-of-type(1) {left: 0%;}
+#ruler .m:nth-of-type(1):after {content: "0";}
+
+#ruler .m:nth-of-type(2) {left: 10%;}
+#ruler .m:nth-of-type(2):after {content: "1";}
+
+#ruler .m:nth-of-type(3) {left: 20%;}
+#ruler .m:nth-of-type(3):after {content: "2";}
+
+#ruler .m:nth-of-type(4) {left: 30%;}
+#ruler .m:nth-of-type(4):after {content: "3";}
+
+#ruler .m:nth-of-type(5) {left: 40%;}
+#ruler .m:nth-of-type(5):after {content: "4";}
+
+#ruler .m:nth-of-type(6) {left: 50%;}
+#ruler .m:nth-of-type(6):after {content: "5";}
+
+#ruler .m:nth-of-type(7) {left: 60%;}
+#ruler .m:nth-of-type(7):after {content: "6";}
+
+#ruler .m:nth-of-type(8) {left: 70%;}
+#ruler .m:nth-of-type(8):after {content: "7";}
+
+#ruler .m:nth-of-type(9) {left: 80%;}
+#ruler .m:nth-of-type(9):after {content: "8";}
+
+#ruler .m:nth-of-type(10) {left: 90%;}
+#ruler .m:nth-of-type(10):after {content: "9";}
+
+#ruler .m:nth-of-type(11) {left: 100%;}
+#ruler .m:nth-of-type(11):after {content: "10";}
+
+#ruler .dm:nth-of-type(1) {left: 10%;}
+#ruler .dm:nth-of-type(2) {left: 20%;}
+#ruler .dm:nth-of-type(3) {left: 30%;}
+#ruler .dm:nth-of-type(4) {left: 40%;}
+#ruler .dm:nth-of-type(5) {left: 50%;}
+#ruler .dm:nth-of-type(6) {left: 60%;}
+#ruler .dm:nth-of-type(7) {left: 70%;}
+#ruler .dm:nth-of-type(8) {left: 80%;}
+#ruler .dm:nth-of-type(9) {left: 90%;}
+#ruler .dm:nth-of-type(10) {left: 100%;}
+
+#controls {
+    position: absolute;
+    width: 100%;
+    top: 160px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#controls sub {
+    margin-top: 50px;
+}
+
+#left, #right {
+    width: 7%;
+}
+
+#left {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#left:hover, #right:hover {
+    cursor: pointer;
+}
+
+#chart-container {
+    width: 70%;
+    height: 200px;
+    margin: auto;
+}
+
+#info-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

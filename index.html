@@ -4,9 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Triple Graph Interactive Simulation</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <p>Hello world</p>
+    <img id="car" src="car.png" width="100px" draggable="false">
+    <div id="background"></div>
+    <div id="ruler">
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m">
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+            <div class="dm"></div>
+        </div>
+        <div class="m"></div>
+    </div>
+    <div id="controls">
+        <img id="left" src="arrow.png" draggable="false">
+        <sub>Press the on-screen arrows or use your keyboard arrows to move the car</sub>
+        <img id="right" src="arrow.png" draggable="false">
+    </div>
+    <div id="chart-container">
+        <canvas id="posChart"></canvas>
+        <canvas id="velChart"></canvas>
+        <canvas id="accelChart"></canvas>
+    </div>
+    <div id="info-container">
+        <button id="stopButton" onclick="toggleSim(this)">Stop Simulation</button>
+    </div>
 </body>
 </html>
