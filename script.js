@@ -70,6 +70,7 @@ function simulation() {
 }
 
 document.getElementById("left").addEventListener("mousedown", () => {
+    right = false;
     left = true;
 });
 document.getElementById("left").addEventListener("mouseup", () => {
@@ -78,6 +79,7 @@ document.getElementById("left").addEventListener("mouseup", () => {
 });
 
 document.getElementById("right").addEventListener("mousedown", () => {
+    left = false;
     right = true;
 });
 document.getElementById("right").addEventListener("mouseup", () => {
@@ -88,9 +90,11 @@ document.getElementById("right").addEventListener("mouseup", () => {
 window.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowLeft":
+            right = false;
             left = true;
             break;
         case "ArrowRight":
+            left = false;
             right = true;
             break;
     }
