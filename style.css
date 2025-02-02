@@ -119,4 +119,11 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#info-container a {
+    text-decoration: none;
 }
