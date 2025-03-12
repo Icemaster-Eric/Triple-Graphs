@@ -5,8 +5,9 @@ let carPos = 0;
 let carVel = 0;
 let carAccel = 0;
 let maxDist = window.innerWidth * 0.8;
-let maxVel = maxDist / 5; // 5s to go from end to end (?)
-let maxAccel = maxVel * 1.5;
+let maxVel = maxDist / (10/3);
+let maxAccel = 4 * maxDist / 10; // 4m/s^2
+let maxDataPoints = 200;
 
 let lastUpdate = Date.now();
 let now = Date.now();
@@ -30,11 +31,11 @@ function simulation() {
 
     let nextVel = carVel + carAccel * (dt / 1000);
     // clamp velocity to maxVel
-    if (nextVel < -maxVel) {
+    if (nextVel <= -maxVel) {
         carVel = -maxVel;
         carAccel = 0;
-    } else if (nextVel > maxVel) {
-        nextVel = maxVel;
+    } else if (nextVel >= maxVel) {
+        carVel = maxVel;
         carAccel = 0;
     } else {
         carVel = nextVel;
@@ -93,6 +94,9 @@ window.addEventListener("keydown", (e) => {
         case "ArrowRight":
             right = true;
             break;
+        case " ":
+            toggleSim(document.getElementById("stopButton"));
+            break;
     }
 });
 
@@ -114,10 +118,10 @@ const posCtx = document.getElementById("posChart").getContext("2d");
 const posChart = new Chart(posCtx, {
     type: "line",
     data: {
-        labels: new Array(200).fill(0), // x-axis labels will be elapsed time in seconds
+        labels: new Array(maxDataPoints).fill(0), // x-axis labels will be elapsed time in seconds
         datasets: [{
             label: "Position (m)",
-            data: new Array(200).fill(0),
+            data: new Array(maxDataPoints).fill(0),
             borderColor: "rgba(54, 162, 235, 1)",
             backgroundColor: "rgba(54, 162, 235, 0.1)",
             borderWidth: 2,
@@ -172,68 +176,10 @@ const velCtx = document.getElementById("velChart").getContext("2d");
 const velChart = new Chart(velCtx, {
     type: "line",
     data: {
-        labels: new Array(200).fill(0), // x-axis labels will be elapsed time in seconds
+        labels: new Array(maxDataPoints).fill(0), // x-axis labels will be elapsed time in seconds
         datasets: [{
             label: "Velocity (m/s)",
-            data: new Array(200).fill(0),
-            borderColor: "rgb(235, 60, 54)",
-            backgroundColor: "rgba(235, 54, 54, 0.1)",
-            borderWidth: 2,
-            // Remove point markers for better performance with many points
-            pointRadius: 0,
-            pointHitRadius: 10
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false, // disable animations for performance
-        plugins: {
-            // Enable decimation to improve performance with large datasets
-            decimation: {
-                enabled: true,
-                algorithm: "lttb",
-                samples: 100
-            },
-            legend: {
-                display: true
-            }
-        },
-        scales: {
-            x: {
-                // Using a category scale since we use elapsed seconds as labels
-                display: true,
-                title: {
-                    display: true,
-                    text: "Elapsed Time (s)"
-                },
-                ticks: {
-                    // Reduce the number of labels displayed
-                    maxTicksLimit: 10
-                }
-            },
-            y: {
-                min: -3,
-                max: 3,
-                display: true,
-                title: {
-                    display: true,
-                    text: "Velocity (m/s)"
-                },
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-const accelCtx = document.getElementById("accelChart").getContext("2d");
-const accelChart = new Chart(accelCtx, {
-    type: "line",
-    data: {
-        labels: new Array(200).fill(0), // x-axis labels will be elapsed time in seconds
-        datasets: [{
-            label: "Acceleration (m/s^2)",
-            data: new Array(200).fill(0),
+            data: new Array(maxDataPoints).fill(0),
             borderColor: "rgb(33, 173, 75)",
             backgroundColor: "rgba(54, 235, 63, 0.1)",
             borderWidth: 2,
@@ -276,9 +222,77 @@ const accelChart = new Chart(accelCtx, {
                 display: true,
                 title: {
                     display: true,
+                    text: "Velocity (m/s)"
+                },
+                beginAtZero: true,
+                grid: {
+                    drawBorder: false,
+                    lineWidth: (ctx) => (ctx.tick.value === 0 ? 3 : 1), // Thicker line at y=0
+                    color: (ctx) => (ctx.tick.value === 0 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.3)'), // Make y=0 stand out
+                },
+            }
+        }
+    }
+});
+
+const accelCtx = document.getElementById("accelChart").getContext("2d");
+const accelChart = new Chart(accelCtx, {
+    type: "line",
+    data: {
+        labels: new Array(maxDataPoints).fill(0), // x-axis labels will be elapsed time in seconds
+        datasets: [{
+            label: "Acceleration (m/s^2)",
+            data: new Array(maxDataPoints).fill(0),
+            borderColor: "rgb(235, 60, 54)",
+            backgroundColor: "rgba(235, 54, 54, 0.1)",
+            borderWidth: 2,
+            // Remove point markers for better performance with many points
+            pointRadius: 0,
+            pointHitRadius: 10
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false, // disable animations for performance
+        plugins: {
+            // Enable decimation to improve performance with large datasets
+            decimation: {
+                enabled: true,
+                algorithm: "lttb",
+                samples: 100
+            },
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            x: {
+                // Using a category scale since we use elapsed seconds as labels
+                display: true,
+                title: {
+                    display: true,
+                    text: "Elapsed Time (s)"
+                },
+                ticks: {
+                    // Reduce the number of labels displayed
+                    maxTicksLimit: 10
+                }
+            },
+            y: {
+                min: -6,
+                max: 6,
+                display: true,
+                title: {
+                    display: true,
                     text: "Acceleration (m/s^2)"
                 },
-                beginAtZero: true
+                beginAtZero: true,
+                grid: {
+                    drawBorder: false,
+                    lineWidth: (ctx) => (ctx.tick.value === 0 ? 3 : 1), // Thicker line at y=0
+                    color: (ctx) => (ctx.tick.value === 0 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.3)'), // Make y=0 stand out
+                },
             }
         }
     }
@@ -292,7 +306,6 @@ function updatePosChart() {
     posChart.data.datasets[0].data.push(carPos / maxDist * 10);
 
     // Limit the number of data points to prevent memory issues
-    const maxDataPoints = 200;
     if (posChart.data.labels.length > maxDataPoints) {
         posChart.data.labels.shift();
         posChart.data.datasets[0].data.shift();
@@ -310,8 +323,7 @@ function updateVelChart() {
     velChart.data.datasets[0].data.push(carVel / maxDist * 10);
 
     // Limit the number of data points to prevent memory issues
-    const maxDataPoints = 200;
-    if (velChart.data.labels.length > maxDataPoints) {
+    while (velChart.data.labels.length > maxDataPoints) {
         velChart.data.labels.shift();
         velChart.data.datasets[0].data.shift();
     }
@@ -328,8 +340,7 @@ function updateAccelChart() {
     accelChart.data.datasets[0].data.push(carAccel / maxDist * 10);
 
     // Limit the number of data points to prevent memory issues
-    const maxDataPoints = 200;
-    if (accelChart.data.labels.length > maxDataPoints) {
+    while (accelChart.data.labels.length > maxDataPoints) {
         accelChart.data.labels.shift();
         accelChart.data.datasets[0].data.shift();
     }
@@ -355,4 +366,35 @@ function toggleSim(e) {
         startTime = Date.now();
         runSim = setInterval(simulation, 1000 / 30);
     }
+}
+
+function resetSim() {
+    carPos = 0;
+    carVel = 0;
+    carAccel = 0;
+
+    lastUpdate = Date.now();
+    now = Date.now();
+    dt = now - lastUpdate;
+
+    startTime = Date.now();
+    steps = 0;
+
+    posChart.data.datasets[0].data = new Array(maxDataPoints).fill(0);
+    posChart.update("none");
+    velChart.data.datasets[0].data = new Array(maxDataPoints).fill(0);
+    velChart.update("none");
+    accelChart.data.datasets[0].data = new Array(maxDataPoints).fill(0);
+    accelChart.update("none");
+    if (!running) {
+        toggleSim(document.getElementById("stopButton"));
+    }
+}
+
+function increaseScale() {
+    maxDataPoints += 50;
+}
+
+function decreaseScale() {
+    maxDataPoints -= 50;
 }

@@ -135,19 +135,29 @@
         </div>
         <div class="m"></div>
     </div>
+    <div id="scaleControls">
+        <div onclick="decreaseScale()">-</div>
+        <div onclick="increaseScale()">+</div>
+    </div>
+    <div id="info-container">
+        <div id="stopButton" onclick="toggleSim(this)">Stop Simulation</div>
+        <div id="resetButton" onclick="resetSim()">Reset Simulation</div>
+        <a href="https://github.com/thatonepythondev/Triple-Graphs" target="_blank">View Code</a>
+    </div>
     <div id="controls">
         <img id="left" src="arrow.png" draggable="false">
-        <sub>Press the on-screen arrows or use your keyboard arrows to move the car</sub>
         <img id="right" src="arrow.png" draggable="false">
     </div>
     <div id="chart-container">
         <canvas id="posChart"></canvas>
         <canvas id="velChart"></canvas>
         <canvas id="accelChart"></canvas>
-    </div>
-    <div id="info-container">
-        <button id="stopButton" onclick="toggleSim(this)">Stop Simulation</button>
-        <a href="https://github.com/thatonepythondev/Triple-Graphs" target="_blank">View Code</a>
+        <div id="instructions">
+            <p>To move the car, either press the on-screen arrows, or use the <kbd>left</kbd> and <kbd>right</kbd> keyboard arrows.</p>
+            <p>Use the <strong>Stop Simulation</strong> button or press <kbd>space</kbd> to pause the simulation.</p>
+            <p>Use the <strong>Reset Simulation</strong> button to completely reset the simulation.</p>
+            <p>Press the <strong>plus</strong> or <strong>minus</strong> button at the left and right of the ruler to increase / decrease the charts' timeframes.</p>
+        </div>
     </div>
 </body>
 </html>
