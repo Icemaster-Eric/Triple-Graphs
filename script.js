@@ -364,9 +364,7 @@ function toggleSim(e) {
         running = true;
         e.textContent = "Stop Simulation";
         lastUpdate = Date.now();
-        now = Date.now();
         dt = now - lastUpdate;
-        startTime = Date.now();
         runSim = setInterval(simulation, 1000 / 30);
     }
 }
