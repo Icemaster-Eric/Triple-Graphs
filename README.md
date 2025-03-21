@@ -1,7 +1,5 @@
 # Triple Graphs - Interactive Physics Simulation
 
-Title, Name, School, Grade, Classroom Teacher, Period, Date
-
 This is a physics simulation written in HTML/CSS/JS, using [Chart.js](https://www.chartjs.org) for displaying the graphs. It is based on the [Moving Man PhET Simulation](https://phet.colorado.edu/sims/cheerpj/moving-man/latest/moving-man.html?simulation=moving-man), and has some improvements in order to make the graphs more readable and accessible to students.
 
 ![image](https://github.com/user-attachments/assets/14e5462f-dfa3-4e4d-8c21-3b2a160d4262)
