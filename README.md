@@ -1,5 +1,7 @@
 # Triple Graphs - Interactive Physics Simulation
 
+Title, Name, School, Grade, Classroom Teacher, Period, Date
+
 This is a physics simulation written in HTML/CSS/JS, using [Chart.js](https://www.chartjs.org) for displaying the graphs. It is based on the [Moving Man PhET Simulation](https://phet.colorado.edu/sims/cheerpj/moving-man/latest/moving-man.html?simulation=moving-man), and has some improvements in order to make the graphs more readable and accessible to students.
 
 ![image](https://github.com/user-attachments/assets/14e5462f-dfa3-4e4d-8c21-3b2a160d4262)
@@ -78,3 +80,7 @@ function simulation() { // This function is run at 30fps - 30 times per second.
 | The graphs in this simulation are clear and easy to understand, while retaining the interactive aspect. | The Phet Simulation's graphs are jagged and chaotic, making it difficult to understand the movement of the object, and how it relates to the velocity and acceleration. |
 
 ###### Note that certain details such as the car movement are based more on game development fundamentals rather than exact physics equations. While this will still provide numbers that are accurate to the original velocity and position equations, it makes the code simpler and more efficient. For example, the calculations are not based on meters, but pixels instead. The number of pixels per "meter" shown on screen will vary depending on the screen size. Ultimately, this interactive physics simulation is focused on providing graphs that allow students to easily understand the relationship between an object's position, velocity and acceleration.
+
+| Name | School | Grade | Teacher | Period | Date |
+| --- | --- | --- | --- | --- | --- |
+| Eric Li | NUAMES | 11th | Anderegg | A/2 | Oct. 23 - Mar. 21 |
