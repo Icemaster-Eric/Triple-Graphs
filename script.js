@@ -155,7 +155,8 @@ const posChart = new Chart(posCtx, {
                 },
                 ticks: {
                     // Reduce the number of labels displayed
-                    maxTicksLimit: 10
+                    maxTicksLimit: 10,
+                    stepSize: 1
                 }
             },
             y: {
@@ -213,7 +214,8 @@ const velChart = new Chart(velCtx, {
                 },
                 ticks: {
                     // Reduce the number of labels displayed
-                    maxTicksLimit: 10
+                    maxTicksLimit: 10,
+                    stepSize: 1
                 }
             },
             y: {
@@ -276,7 +278,8 @@ const accelChart = new Chart(accelCtx, {
                 },
                 ticks: {
                     // Reduce the number of labels displayed
-                    maxTicksLimit: 10
+                    maxTicksLimit: 10,
+                    stepSize: 1
                 }
             },
             y: {
