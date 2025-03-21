@@ -72,7 +72,9 @@ function simulation() { // This function is run at 30fps - 30 times per second.
 
 ### Comparison to Phet Simulation
 
-![image](https://github.com/user-attachments/assets/53043ffa-fdfc-432e-ab06-5e7fafaadfea)
-*The Phet Simulation's graphs are jagged and chaotic, making it difficult to understand the movement of the object, and how it relates to the velocity and acceleration.*
+| This Simulation | Phet Simulation |
+| --- | --- |
+| ![image](https://github.com/user-attachments/assets/14e5462f-dfa3-4e4d-8c21-3b2a160d4262) | ![image](https://github.com/user-attachments/assets/53043ffa-fdfc-432e-ab06-5e7fafaadfea) |
+| The graphs in this simulation are clear and easy to understand, while retaining the interactive aspect. | The Phet Simulation's graphs are jagged and chaotic, making it difficult to understand the movement of the object, and how it relates to the velocity and acceleration. |
 
 ###### Note that certain details such as the car movement are based more on game development fundamentals rather than exact physics equations. While this will still provide numbers that are accurate to the original velocity and position equations, it makes the code simpler and more efficient. For example, the calculations are not based on meters, but pixels instead. The number of pixels per "meter" shown on screen will vary depending on the screen size. Ultimately, this interactive physics simulation is focused on providing graphs that allow students to easily understand the relationship between an object's position, velocity and acceleration.
