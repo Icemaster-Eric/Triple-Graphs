@@ -135,9 +135,17 @@
         </div>
         <div class="m"></div>
     </div>
+    <div id="scaleControls">
+        <div onclick="decreaseScale()">-</div>
+        <div onclick="increaseScale()">+</div>
+    </div>
+    <div id="info-container">
+        <div id="stopButton" onclick="toggleSim(this)">Stop Simulation</div>
+        <div id="resetButton" onclick="resetSim()">Reset Simulation</div>
+        <a href="https://github.com/Icemaster-Eric/Triple-Graphs" target="_blank">GitHub Repo</a>
+    </div>
     <div id="controls">
         <img id="left" src="arrow.png" draggable="false">
-        <sub>Press the on-screen arrows or use your keyboard arrows to move the car</sub>
         <img id="right" src="arrow.png" draggable="false">
     </div>
     <div id="chart-container">
